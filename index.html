@@ -33,7 +33,7 @@
 (set: $lunettes to (datamap: &quot;name&quot;, &quot;lunettes&quot;, &quot;description&quot;, &quot;Les lunettes de plongée, les meilleures amies d&#39;un militant.&quot;, &quot;isCarried&quot;, false, &quot;helped&quot;, false))
 (set: $serum to (datamap: &quot;name&quot;, &quot;serum&quot;, &quot;description&quot;, &quot;Un liquide salé qui a le goût des larmes.&quot;, &quot;isCarried&quot;, false))
 (set: $megaphone to (datamap: &quot;name&quot;, &quot;megaphone&quot;, &quot;description&quot;, &quot;Un porte voix, vous permet de crier plus fort.&quot;, &quot;isCarried&quot;, false))
-(set: $photo to (datamap: &quot;name&quot;, &quot;appareil photo&quot;, &quot;description&quot;, &quot;Un appareil photo à tirage immédiat, on peut le considerer comme une arme de guerre en ce moment.&quot;, &quot;isCarried&quot;, false))</tw-passagedata><tw-passagedata pid="2" name="Jouer" tags="" position="787,395" size="100,100">(if: (history:) contains &quot;nord&quot;)[Ouf, j&#39;ai cru que mon costume allait se salir.]
+(set: $photo to (datamap: &quot;name&quot;, &quot;appareil photo&quot;, &quot;description&quot;, &quot;Un appareil photo à tirage immédiat, on peut le considerer comme une arme de guerre en ce moment.&quot;, &quot;isCarried&quot;, false))</tw-passagedata><tw-passagedata pid="2" name="Jouer" tags="" position="792,365" size="100,100">(if: (history:) contains &quot;nord&quot;)[Ouf, j&#39;ai cru que mon costume allait se salir.]
 (else:)[
 Vous êtes à l&#39;arrière du cortège de la manifestation #StopLoiSecuriteGlobale.
 Vous sortez de chez le tailleur et votre costard est impécable.
@@ -62,7 +62,7 @@ Devant vous, au nord, vous apercevez la fin du cortège bloqué par des CRS bien
 [[Rejoindre les Black Blocks-&gt;BlackBlock]]
 [[Entrez dans le magasin-&gt;magasin]]
 [[S&#39;approcher des CRS-&gt;CRS]]
-[[Arrière du cortège-&gt;Jouer]]</tw-passagedata><tw-passagedata pid="4" name="ouest" tags="" position="611,546" size="100,100">Vous arrivez dans une ruelle silencieuse, sombre et un homme se tient assis au sol.
+[[Arrière du cortège-&gt;Jouer]]</tw-passagedata><tw-passagedata pid="4" name="ouest" tags="" position="576,499" size="100,100">Vous arrivez dans une ruelle silencieuse, sombre et un homme se tient assis au sol.
 Il vous appostrophe, car vous êtes bien habillé et se moque de vous.
 &quot;Jamais j&#39;aurais cru voir un homme de votre statut dans une mani....&quot;.
 Il n&#39;arrive pas à finir sa phrase, et s&#39;écroule //surement de fatigue//.
@@ -98,14 +98,57 @@ Vous aviez cru comprendre qu&#39;elles allaient à un enterrement mais ce n&#39;
 Le groupe se sépare en deux sous-groupes.
 L&#39;un, à l&#39;[[est-&gt;vitrineMAG]], s&#39;attelle à casser des vitrines de magasins.
 L&#39;autre, à l&#39;[[ouest-&gt;atkCRS]], fonce en direction des CRS et les attaque.
-Vous ne pouvez plus faire marche arrière.</tw-passagedata><tw-passagedata pid="7" name="CRS" tags="" position="590,925" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="8" name="magasin" tags="" position="1160,928" size="100,100">Bonjour, Monsieur, que puis-je faire pour vous ?
+Vous ne pouvez plus faire marche arrière.</tw-passagedata><tw-passagedata pid="7" name="CRS" tags="" position="590,923" size="100,100">(if: $megaphone&#39;s isCarried is false)[Vous allez à l&#39;avant du cortège avec des lunettes et rien d&#39;autre..
+Vous pensez être dans un pays démocratique, pff.
+Vous êtes un novice, votre visage n&#39;est pas beau à voir,
+Et votre costume, n&#39;en parlons pas.
+
+[Rejouer]&lt;c1|
+(click: ?c1)[(reload:)]
+]
+(else:)[
+Vous êtes en tête du cortège, et sortez votre mégaphone.
+Vous commencez à scander des slogans dans le sens des manifestants,
+Ils vous écoutent attentivement.
+(link:&quot;Suite&quot;)[(replace:?c2)[Les brigades de CRS, qui étaient en train de vous charger s&#39;arrêtent et vous écoutent. Vous prônez l&#39;entraide et l&#39;union des deux &#39;camps&#39;, soudain ..
+(link:&quot;Suite&quot;)[(replace:?c3)[La foule vous applaudi, les CRS vous laissent passer en dehors de la manifestation.
+(link:&quot;Suite&quot;)[(replace:?c4)[Tout le monde se met à rire, chanter, aussi bien les policiers que les manifestants.
+Ils partent alors tous main dans la main en direction de l&#39;Elysée, dans le but de redonner le pouvoir au peuple.
+(link:&quot;Suite&quot;)[(replace:?c5)[Votre mission est finie agent spécial, rentrez chez vous, et faites un bon plat.
+Bravo, vous pouvez [rejouer]&lt;c1| pour decouvrir toutes les branches du scénario.
+&lt;hr/&gt;
+Vous pouvez aussi envoyer vos scenarios à 
+l&#39;adresse mail : **omarmelade.contact@gmail.com**, 
+je me ferais un plaisir de les transformer en aventures. 
+
+
+Merci d&#39;avoir joué, 
+omarmelade.
+
+]]
+]]]]]]]
+
+[]&lt;c2|
+[]&lt;c3|
+[]&lt;c4|
+[]&lt;c5|
+
+(click: ?c1)[(reload:)]</tw-passagedata><tw-passagedata pid="8" name="magasin" tags="" position="1150,926" size="100,100">(if: $photo&#39;s isCarried is false and $megaphone&#39;s isCarried is false)[
+Bonjour, Monsieur, que puis-je faire pour vous ?
 L&#39;épicier propose de vous aider mais vous avez déjà repéré ce qu&#39;il vous faut.
 Vous scrutez des yeux les articles.
 Vous voyez un appareil photo à tirage immédiat, soit une arme de guerre en ce moment.
 Et vous trouvez un porte voix, vous permet de crier plus fort.
 A l&#39;ouest se trouve le cortège de manifestant.
 &lt;hr/&gt;
-(link: &quot;Appareil photo&quot;)[(set:$photo&#39;s isCarried to true)(replace:?c5)[&lt;hr/&gt; Vous prenez l&#39;*appareil photo*, votre équipement devient lourd, vous ne pouvez plus prendre le *porte voix*.](replace:?c2)[](replace:?cX)[]]&lt;c1|[ / ]&lt;cX|(link:&quot;Porte voix&quot;)[(set:$megaphone&#39;s isCarried to true)(replace:?c5)[&lt;hr/&gt; Vous prenez le *porte voix*, tout excité par le fait de l&#39;essayer vous ne pensez pas à prendre l&#39;*appareil photo*.](replace:?c1)[](replace:?cX)[]]&lt;c2|
+(link: &quot;Appareil photo&quot;)[(set:$photo&#39;s isCarried to true)(replace:?c5)[&lt;hr/&gt; Vous prenez l&#39;*appareil photo*, votre équipement devient lourd, vous ne pouvez plus prendre le *porte voix*.](replace:?c2)[](replace:?cX)[]]&lt;c1|[ / ]&lt;cX|(link:&quot;Porte voix&quot;)[(set:$megaphone&#39;s isCarried to true)(replace:?c5)[&lt;hr/&gt; Vous prenez le *porte voix*, tout excité par le fait de l&#39;essayer vous ne pensez pas à prendre l&#39;*appareil photo*.](replace:?c1)[](replace:?cX)[]]&lt;c2|](else:)[L&#39;épicier s&#39;énerve il considère votre aller-retour comme un manque de respect qui fait penser que vous n&#39;êtes pas satisfait.
+&lt;hr/&gt;
+« Bonjour, pourquoi revenez vous, 
+Ce que je vous ai vendu ne vous a pas suffit !
+Dans tout les cas je n&#39;ai plus rien pour vous.
+Revenez un autre jour. »&lt;hr/&gt;
+Il n&#39;est plus question de faire affaire ici.
+]
 [[Sortir du magasin-&gt;nord]]
 []&lt;c5|</tw-passagedata><tw-passagedata pid="9" name="nordbis" tags="" position="984,551" size="100,100">Sans protection oculaire, vous vous retrouvez au coeur de l&#39;action.
 Vos yeux vous piquent, vous essayez de prendre votre téléphone mais vous faites un malaise.
@@ -125,7 +168,7 @@ Vous êtes jeté hors du bar.
 Un taxi s&#39;arrète, vous et votre equipier montez dans le vehicule.
 Vous decouvrez que c&#39;est votre superieur.
 Il trouve que vous vous êtes trop écarté de votre objectif, et vous oblige à retourner au travail, ..
-Vous pouvez [[coopérer-&gt;nord]] ou vous [[révolter-&gt;Voiture]].</tw-passagedata><tw-passagedata pid="11" name="Voiture" tags="" position="340,926" size="100,100">Vous restez dans la voiture et exposez vos arguments, 
+Vous pouvez [[coopérer-&gt;nord]] ou vous [[révolter-&gt;Voiture]].</tw-passagedata><tw-passagedata pid="11" name="Voiture" tags="" position="342,922" size="100,100">Vous restez dans la voiture et exposez vos arguments, 
 vous ne voulez plus faire cette mission, car vous trouvez
 qu&#39;elle ne correspond plus à vos principes, ...
 Vous n&#39;avez pas le temps d&#39;achever votre plaidoyer,
