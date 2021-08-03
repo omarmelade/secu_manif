@@ -15,11 +15,11 @@
     display: none;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="init" tags="" position="799,196" size="100,100">[[Jouer]]
 
-(set: $bag to (a:))
 (set: $lunettes to (datamap: &quot;name&quot;, &quot;lunettes&quot;, &quot;description&quot;, &quot;Les lunettes de plongée, les meilleures amies d&#39;un militant.&quot;, &quot;isCarried&quot;, false, &quot;helped&quot;, false))
 (set: $serum to (datamap: &quot;name&quot;, &quot;serum&quot;, &quot;description&quot;, &quot;Un liquide salé qui a le goût des larmes.&quot;, &quot;isCarried&quot;, false))
 (set: $megaphone to (datamap: &quot;name&quot;, &quot;megaphone&quot;, &quot;description&quot;, &quot;Un porte voix, vous permet de crier plus fort.&quot;, &quot;isCarried&quot;, false))
-(set: $photo to (datamap: &quot;name&quot;, &quot;appareil photo&quot;, &quot;description&quot;, &quot;Un appareil photo à tirage immédiat, on peut le considerer comme une arme de guerre en ce moment.&quot;, &quot;isCarried&quot;, false))</tw-passagedata><tw-passagedata pid="2" name="Jouer" tags="" position="787,395" size="100,100">
+(set: $photo to (datamap: &quot;name&quot;, &quot;appareil photo&quot;, &quot;description&quot;, &quot;Un appareil photo à tirage immédiat, on peut le considerer comme une arme de guerre en ce moment.&quot;, &quot;isCarried&quot;, false))</tw-passagedata><tw-passagedata pid="2" name="Jouer" tags="" position="787,395" size="100,100">(if: (history:) contains &quot;nord&quot;)[Ouf, j&#39;ai cru que mon costume allait se salir.]
+(else:)[
 Vous êtes à l&#39;arrière du cortège de la manifestation #StopLoiSecuriteGlobale.
 Vous sortez de chez le tailleur et votre costard est impécable.
 Vous voulez renter chez vous.
@@ -28,23 +28,25 @@ Vous savez que la manifestation s&#39;arrête normalement dans 1h, mais vous êt
 A l&#39;**est** se trouve une pharmacie, très utile pour se soigner.
 A l&#39;**ouest**, vous appercevez au loin un cordon de Gardiens de la paix se rapprocher, il y&#39;a entre vous une ruelle sombre.
 En face, au **nord**, la manifestation progresse et vous n&#39;appercevez pas le bout du cortège.
-
-&lt;hr/&gt;Sur votre visage : $face_obj
-Inventaire : $bag
+]
 &lt;hr/&gt;
 Où voulez vous aller ?
 (if: $lunettes&#39;s isCarried is true)[[[Dans la manifestation-&gt;nord]]](else:)[[[Dans la manifestation-&gt;nordbis]]]
 [[Vers les Gardiens de la paix-&gt;ouest]]
 [[Dans la pharmacie-&gt;est]]
-</tw-passagedata><tw-passagedata pid="3" name="nord" tags="" position="790,544" size="100,100">Vous êtes au coeur de la manifestation.
+</tw-passagedata><tw-passagedata pid="3" name="nord" tags="" position="790,544" size="100,100">(if:(history:)contains &quot;magasin&quot;)[**Mais que fais-je entouré de tous ces prolos.**]
+(else: )
+[Vous êtes au coeur de la manifestation.
 Le public qui s&#39;est rassemblé aujourd&#39;hui est divers.
 On y voit des Black Block, des gilets jaunes, des syndicalistes et j&#39;en passe.
-Vous pouvez [[rejoindre-&gt;BlackBlock]] les Black Blocks.
-A l&#39;[[est-&gt;magasin]] se trouve un magasin d&#39;objets divers.
-Devant vous, au [[nord-&gt;CRS]], vous apercevez la fin du cortège bloqué par des CRS bien equipés.
+Vous pouvez rejoindre les Black Blocks.
+A l&#39;est se trouve un magasin d&#39;objets divers.
+Devant vous, au nord, vous apercevez la fin du cortège bloqué par des CRS bien equipés.]
 
 &lt;hr/&gt;
-
+[[Rejoindre les Black Blocks-&gt;BlackBlock]]
+[[Entrez dans le magasin-&gt;magasin]]
+[[S&#39;approcher des CRS-&gt;CRS]]
 [[Arrière du cortège-&gt;Jouer]]</tw-passagedata><tw-passagedata pid="4" name="ouest" tags="" position="611,546" size="100,100">Vous arrivez dans une ruelle silencieuse, sombre et un homme se tient assis au sol.
 Il vous appostrophe, car vous êtes bien habillé et se moque de vous.
 &quot;Jamais j&#39;aurais cru voir un homme de votre statut dans une mani....&quot;.
@@ -54,17 +56,17 @@ Vous vous demandez pourquoi cet homme était ici en marge, et surtout ce qu&#39;
 A côté de lui se trouve une paire de lunettes, qu&#39;il n&#39;as surement pas pu mettre.
 A l&#39;est se trouve l&#39;arrière du cortège.
 &lt;hr/&gt;
-[[Arrière du cortège-&gt;Jouer]]
-(if: $lunettes&#39;s isCarried is false)[(link: &quot;Prendre les lunettes&quot;)[(set: $lunettes&#39;s isCarried to true, $isSelected to $lunettes)(replace:?c2)[](replace:?c5)[Vous avez pris les lunettes de cet homme à terre.]]&lt;c1|(if: $serum&#39;s isCarried is true)[(link: &quot; / Aider l&#39;homme&quot;)[(set: $lunettes&#39;s isCarried to true)(set: $isSelected to $lunettes)(replace:?c1)[](replace:?c5)[Vous sortez votre serum et vous aspergez les yeux du malheureux.
+(if: $lunettes&#39;s isCarried is false)[(link: &quot;Prendre les lunettes&quot;)[(set: $lunettes&#39;s isCarried to true, $isSelected to $lunettes)(replace:?cX)[](replace:?c2)[](replace:?c5)[Vous avez pris les lunettes de cet homme à terre.]]&lt;c1|(if: $serum&#39;s isCarried is true)[[ / ]&lt;cX|(link: &quot;Aider l&#39;homme&quot;)[(set: $lunettes&#39;s isCarried to true)(set: $isSelected to $lunettes)(replace:?c1)[](replace:?cX)[](replace:?c5)[Vous sortez votre serum et vous aspergez les yeux du malheureux.
 Après quelques secondes, l&#39;homme commence à grogner...
 Puis il se reveille petit à petit, en s&#39;étirant et en criant
 Il vous demande qui vous êtes, vous lui expliquez toute la situation.
-Il vous remercie et vous promet une bière d&#39;ici quelques jours.
+Il vous remercie, vous offre ses *lunettes* et vous promet une bière d&#39;ici quelques jours.
 Vous lui retorquez que vous avez arreté de boire le jour de vos 18 ans, 
 Et que vous trouvez que cela est de mauvais augure.
 ...
 Finalement, après avoir discuté vous vous posez la question.
 Vous pouvez allez [[boire une bière-&gt;Bar]] offerte par cet inconnu.]]&lt;c2|]]
+[[Arrière du cortège-&gt;Jouer]]
 &lt;hr/&gt;
 []&lt;c5|</tw-passagedata><tw-passagedata pid="5" name="est" tags="" position="1162,550" size="100,100">Vous arrivez dans la Pharmacie Darmanin.
 Le pharmacien vous propose du &#39;serum&#39; physiologique.
@@ -73,20 +75,30 @@ A l&#39;ouest se trouve l&#39;arrière du cortège.
 &lt;hr/&gt;
 Que voulez-vous faire ?
 
-[[Arrière du cortège-&gt;Jouer]]
 (if: $serum&#39;s isCarried is false)[(link: &quot;Prendre le serum&quot;)[(set: $serum&#39;s isCarried to true)(replace:?c5)[Le pharmacien comprend votre detresse et votre envie de rentrer chez vous, il vous offre le *serum*]]&lt;c1|]
+[[Arrière du cortège-&gt;Jouer]]
 &lt;hr/&gt;
 []&lt;c5|</tw-passagedata><tw-passagedata pid="6" name="BlackBlock" tags="" position="849,926" size="100,100">Vous rejoignez un groupe de personnes vêtues de noir, non identifiables.
 Vous aviez cru comprendre qu&#39;elles allaient à un enterrement mais ce n&#39;est pas le cas.
 Le groupe se sépare en deux sous-groupes.
 L&#39;un, à l&#39;[[est-&gt;vitrineMAG]], s&#39;attelle à casser des vitrines de magasins.
 L&#39;autre, à l&#39;[[ouest-&gt;atkCRS]], fonce en direction des CRS et les attaque.
-Vous ne pouvez plus faire marche arrière.</tw-passagedata><tw-passagedata pid="7" name="CRS" tags="" position="590,925" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="8" name="magasin" tags="" position="1160,928" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="9" name="nordbis" tags="" position="984,551" size="100,100">Sans protection oculaire, vous vous retrouvez au coeur de l&#39;action.
+Vous ne pouvez plus faire marche arrière.</tw-passagedata><tw-passagedata pid="7" name="CRS" tags="" position="590,925" size="100,100">Double-click this passage to edit it.</tw-passagedata><tw-passagedata pid="8" name="magasin" tags="" position="1160,928" size="100,100">Bonjour, Monsieur, que puis-je faire pour vous ?
+L&#39;épicier propose de vous aider mais vous avez déjà repéré ce qu&#39;il vous faut.
+Vous scrutez des yeux les articles.
+Vous voyez un appareil photo à tirage immédiat, soit une arme de guerre en ce moment.
+Et vous trouvez un porte voix, vous permet de crier plus fort.
+A l&#39;ouest se trouve le cortège de manifestant.
+&lt;hr/&gt;
+(link: &quot;Appareil photo&quot;)[(set:$photo&#39;s isCarried to true)(replace:?c5)[&lt;hr/&gt; Vous prenez l&#39;*appareil photo*, votre équipement devient lourd, vous ne pouvez plus prendre le *porte voix*.](replace:?c2)[](replace:?cX)[]]&lt;c1|[ / ]&lt;cX|(link:&quot;Porte voix&quot;)[(set:$megaphone&#39;s isCarried to true)(replace:?c5)[&lt;hr/&gt; Vous prenez le *porte voix*, tout excité par le fait de l&#39;essayer vous ne pensez pas à prendre l&#39;*appareil photo*.](replace:?c1)[](replace:?cX)[]]&lt;c2|
+[[Sortir du magasin-&gt;nord]]
+[]&lt;c5|</tw-passagedata><tw-passagedata pid="9" name="nordbis" tags="" position="984,551" size="100,100">Sans protection oculaire, vous vous retrouvez au coeur de l&#39;action.
 Vos yeux vous piquent, vous essayez de prendre votre téléphone mais vous faites un malaise.
 
 &lt;hr/&gt;
 
-[[Rejouer-&gt;init]]</tw-passagedata><tw-passagedata pid="10" name="Bar" tags="" position="501,720" size="100,100">Vous êtes au bar avec votre nouvel ami.
+[Rejouer]&lt;c1|
+(click: ?c1)[(reload:)]</tw-passagedata><tw-passagedata pid="10" name="Bar" tags="" position="501,720" size="100,100">Vous êtes au bar avec votre nouvel ami.
 La conversation est agité le courant passe, il vous dit qu&#39;il s&#39;appelle Gabriel.
 Il ne vous donne pas son nom de famille, vous faite de même .
 Il vous semble digne confiance.
@@ -104,7 +116,8 @@ qu&#39;elle ne correspond plus à vos principes, ...
 Vous n&#39;avez pas le temps d&#39;achever votre plaidoyer,
 Votre employeur vous tue.
 
-[[Rejouer-&gt;init]]</tw-passagedata><tw-passagedata pid="12" name="vitrineMAG" tags="" position="774,1076" size="100,100">(if:$photo&#39;s isCarried is true)[
+[Rejouer]&lt;c1|
+(click: ?c1)[(reload:)]</tw-passagedata><tw-passagedata pid="12" name="vitrineMAG" tags="" position="774,1076" size="100,100">(if:$photo&#39;s isCarried is true)[
 Vous n&#39;attaquez pas les policiers.
 Vous faites semblant de filmer leurs actions, et celles des Black Block,
 Alors que vous n&#39;êtes munis que d&#39;un simple appareil photo.
@@ -117,7 +130,12 @@ Ils pensaient que vous faisiez partie des Black Block, c&#39;est ce qu&#39;ils �
 Vous ne pouvez rien prouver, vous êtes incarceré suite à leurs accusations.]
 
 &lt;hr/&gt;
-[[Rejouer-&gt;init]]</tw-passagedata><tw-passagedata pid="13" name="atkCRS" tags="" position="924,1076" size="100,100">Double-click this passage to edit it.</tw-passagedata></tw-storydata>
+[Rejouer]&lt;c1|
+(click: ?c1)[(reload:)]</tw-passagedata><tw-passagedata pid="13" name="atkCRS" tags="" position="924,1076" size="100,100">Vous n&#39;avez aucune arme les CRS vous repèrent et vous emmènent.
+Vous n&#39;êtes pas malin, ce soir pas de repas chaud pour vous, vous finissez en GAV.
+
+[Rejouer]&lt;c1|
+(click: ?c1)[(reload:)]</tw-passagedata></tw-storydata>
 
 <script title="Twine engine code" data-main="harlowe">"use strict";function _defineProperty(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}function _toConsumableArray(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)}var _slicedToArray=function(){function e(e,t){var n=[],r=!0,i=!1,o=void 0;try{for(var a,s=e[Symbol.iterator]();!(r=(a=s.next()).done)&&(n.push(a.value),!t||n.length!==t);r=!0);}catch(e){i=!0,o=e}finally{try{!r&&s.return&&s.return()}finally{if(i)throw o}}return n}return function(t,n){if(Array.isArray(t))return t;if(Symbol.iterator in Object(t))return e(t,n);throw new TypeError("Invalid attempt to destructure non-iterable instance")}}(),_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};!function(){/**
  * @license almond 0.3.3 Copyright jQuery Foundation and other contributors.
