@@ -13,7 +13,20 @@
 
 <tw-storydata name="#SécuritéGlobale" startnode="1" creator="Twine" creator-version="2.3.9" ifid="D04DF647-2086-42D6-8754-AC7EB66C671E" zoom="1" format="Harlowe" format-version="3.1.0" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">tw-sidebar {
     display: none;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="init" tags="" position="799,196" size="100,100">[[Jouer]]
+}
+
+@media screen and (max-width: 992px) {
+  body {
+    font-size:14px !important;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+	font-size:11px !important;
+  }
+}
+</style><script role="script" id="twine-user-script" type="text/twine-javascript"></script><tw-passagedata pid="1" name="init" tags="" position="799,196" size="100,100">[[Jouer]]
 
 (set: $lunettes to (datamap: &quot;name&quot;, &quot;lunettes&quot;, &quot;description&quot;, &quot;Les lunettes de plongée, les meilleures amies d&#39;un militant.&quot;, &quot;isCarried&quot;, false, &quot;helped&quot;, false))
 (set: $serum to (datamap: &quot;name&quot;, &quot;serum&quot;, &quot;description&quot;, &quot;Un liquide salé qui a le goût des larmes.&quot;, &quot;isCarried&quot;, false))
