@@ -1,0 +1,24 @@
+name: Master - SecuManif - Deployement
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+
+  artifact:
+
+    name: GitHub Packages - Testing SecuManif
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Set up NODE 14
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Node install packages
+        run: npm install --silent
+      - name: Node install http-srv
+        run: npm install http-server -g
