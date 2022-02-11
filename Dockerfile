@@ -1,16 +1,6 @@
-# pull official base image
-FROM node:14.15.4-alpine
+FROM lipanski/docker-static-website:latest
 
-# set working directory
-WORKDIR /manif-game
+COPY . .
 
-# install app dependencies
-RUN npm install --silent
-RUN npm install http-server -g
-
-# add app
-COPY . ./
-
-# start app
-CMD ["http-server"]
-
+# Run thttpd
+CMD ["thttpd", "-D", "-h", "0.0.0.0", "-p", "3000", "-d", "/home/static", "-u", "static", "-l", "-", "-M", "60"]
