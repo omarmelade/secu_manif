@@ -20,5 +20,4 @@ jobs:
       - name: Build secu-manif Docker image
         run: |
           docker build . --tag ghcr.io/omarmelade/secu_manif
-          docker run ghcr.io/omarmelade/secu_manif:latest
           docker push ghcr.io/omarmelade/secu_manif:latest
