@@ -1,10 +1,10 @@
 version: '2'
 services:
   secu_manif:
-    container_name: manif-game
+    container_name: secu-manif
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '3713:3000'
+      - '3713:80'
     restart: unless-stopped
